@@ -33,6 +33,33 @@
     box.addEventListener('click', function (e) { if (e.target !== box.querySelector('img')) box.close(); });
   }
 
+  // YouTube and TikTok pop up after 30 seconds on a page
+  var pop = document.getElementById('popSocial');
+  if (pop) setTimeout(function () { pop.classList.add('show'); }, 30000);
+
+  // Scroll reveal: sections slide and fade in as they come into view
+  var targets = document.querySelectorAll('.section, .highlights, .cta-band, .menu a, .gallery figure, .features li, .steps li, .zone-list li, .scroll-cue');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        // hand control back to normal styles so hover effects stay snappy
+        setTimeout(function () { el.classList.remove('reveal', 'in'); }, 1400);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+    targets.forEach(function (el, i) {
+      el.classList.add('reveal');
+      if (el.matches('.menu a, .gallery figure, .features li, .steps li, .zone-list li')) {
+        el.style.setProperty('--d', ((Array.prototype.indexOf.call(el.parentNode.children, el)) * 0.08) + 's');
+      }
+      io.observe(el);
+    });
+  }
+
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
