@@ -19,6 +19,20 @@
     video.pause(); video.removeAttribute('autoplay');
   }
 
+  // Photo viewer (Our Work page)
+  var box = document.getElementById('lightbox');
+  if (box && box.showModal) {
+    document.querySelectorAll('.gallery img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        box.querySelector('img').src = img.src;
+        box.querySelector('img').alt = img.alt;
+        box.querySelector('p').textContent = img.alt;
+        box.showModal();
+      });
+    });
+    box.addEventListener('click', function (e) { if (e.target !== box.querySelector('img')) box.close(); });
+  }
+
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
