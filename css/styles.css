@@ -1,4 +1,5 @@
 :root{
+  --brick-tile:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 48' preserveAspectRatio='none'%3E%3Crect width='96' height='48' fill='%23d05422'/%3E%3Crect x='3' y='0' width='45' height='22' fill='%23dc5e2b'/%3E%3Crect x='51' y='24' width='45' height='22' fill='%23c44a1d'/%3E%3Crect x='0' y='22' width='96' height='2.5' fill='%230f1619'/%3E%3Crect x='0' y='45.5' width='96' height='2.5' fill='%230f1619'/%3E%3Crect x='0' y='0' width='2.5' height='24' fill='%230f1619'/%3E%3Crect x='48' y='0' width='2.5' height='24' fill='%230f1619'/%3E%3Crect x='24' y='24' width='2.5' height='24' fill='%230f1619'/%3E%3Crect x='72' y='24' width='2.5' height='24' fill='%230f1619'/%3E%3C/svg%3E");
   --ink:#0f1619; --ink-2:#172126; --brick:#d05422; --brick-deep:#b5330b;
   --amber:#ff9a1a; --white:#fff; --muted:#b9c3c7; --wa:#25a55a;
   --head:'Oswald','Arial Narrow',Impact,sans-serif;
@@ -18,7 +19,7 @@ a{color:var(--amber)}
 /* Brick-textured lettering: brick faces with dark mortar joints cut through the letters */
 .brick-text{
   color:var(--brick);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 48' preserveAspectRatio='none'%3E%3Crect width='96' height='48' fill='%23d05422'/%3E%3Crect x='3' y='0' width='45' height='22' fill='%23dc5e2b'/%3E%3Crect x='51' y='24' width='45' height='22' fill='%23c44a1d'/%3E%3Crect x='0' y='22' width='96' height='2.5' fill='%230f1619'/%3E%3Crect x='0' y='45.5' width='96' height='2.5' fill='%230f1619'/%3E%3Crect x='0' y='0' width='2.5' height='24' fill='%230f1619'/%3E%3Crect x='48' y='0' width='2.5' height='24' fill='%230f1619'/%3E%3Crect x='24' y='24' width='2.5' height='24' fill='%230f1619'/%3E%3Crect x='72' y='24' width='2.5' height='24' fill='%230f1619'/%3E%3C/svg%3E");
+  background-image:var(--brick-tile);
   background-size:1.9em .95em;
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -34,7 +35,6 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
 .btn{display:inline-block;background:var(--brick);color:var(--white);text-decoration:none;font-weight:700;font-size:1.15rem;padding:.7rem 1.6rem;border-radius:4px;border:2px solid var(--brick);box-shadow:0 3px 0 var(--brick-deep);transition:transform .12s,background .12s}
 .btn:hover{background:var(--brick-deep);transform:translateY(1px)}
 .btn-small{font-size:1rem;padding:.45rem 1rem}
-.site-footer{padding-bottom:5rem}
 .btn-wa{background:var(--wa);border-color:var(--wa);box-shadow:0 3px 0 #17773f}
 .btn-wa:hover{background:#17773f}
 .btn-ghost{background:transparent;border-color:var(--amber);color:var(--amber);box-shadow:none}
@@ -42,7 +42,7 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
 .actions{display:flex;flex-wrap:wrap;gap:.9rem}
 
 /* Landing: logo, welcome, then four big options */
-.landing{max-width:1000px;margin:0 auto;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2rem) 2rem;text-align:center;min-height:calc(100svh - 4.2rem);display:flex;flex-direction:column;justify-content:center;gap:0}
+.landing{max-width:1000px;margin:0 auto;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2rem) 2rem;text-align:center;padding-bottom:1rem}
 .landing h1{margin:0}
 .landing h1 img{width:100%;margin:0 auto;mix-blend-mode:lighten}
 .welcome{font-family:var(--head);text-transform:uppercase;font-weight:700;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.1;margin:1.4rem 0 .4rem}
@@ -112,8 +112,6 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
 .contact-grid .actions{flex-direction:column;align-items:stretch}
 .contact-grid .btn{text-align:center}
 
-.site-footer{margin-top:3rem;padding:2rem 1rem;text-align:center;background:rgba(15,22,25,.92);border-top:3px solid var(--brick-deep)}
-.site-footer p{margin:.4rem 0 0;color:var(--muted);font-size:.95rem}
 
 @media (max-width:760px),(orientation:portrait){
   .menu{grid-template-columns:1fr 1fr}
@@ -121,6 +119,9 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
   .menu strong{font-size:1.5rem}
   .menu span{font-size:1rem}
   .landing{padding-top:1rem}
+  .highlights{grid-template-columns:1fr;margin:1.5rem .75rem}
+  .highlights div+div{border-left:0;border-top:2px solid rgba(255,255,255,.12)}
+  .foot-grid{grid-template-columns:1fr;text-align:left}
   .lead{font-size:1.15rem}
   .wa-icon{width:76px;height:76px}
   .wa-icon svg{width:46px;height:46px}
@@ -129,3 +130,29 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
   .landing{justify-content:flex-start}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+
+/* Landing: highlights, areas, call to action */
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:2rem auto;background:var(--panel);border-top:3px solid var(--amber);border-bottom:3px solid var(--amber)}
+.highlights div{padding:1.3rem 1rem;text-align:center;display:flex;flex-direction:column;gap:.2rem}
+.highlights div+div{border-left:2px solid rgba(255,255,255,.12)}
+.highlights .big{font-size:clamp(2.4rem,6vw,3.4rem);font-weight:700;line-height:1.1}
+.highlights span:last-child{color:var(--muted)}
+.areas h2{font-size:clamp(1.8rem,5vw,2.5rem)}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 1.4rem;padding:0}
+.chips li{padding:.45rem 1rem;border:2px solid var(--brick);border-radius:999px;background:rgba(208,84,34,.15);font-weight:500}
+.text-link{font-weight:600}
+.cta-band{max-width:1000px;margin:0 auto 2rem;padding:2rem clamp(1rem,4vw,2rem);text-align:center;background:linear-gradient(135deg,var(--brick-deep),var(--brick));border-radius:6px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.cta-band h2{font-family:var(--head);text-transform:uppercase;font-size:clamp(1.8rem,5vw,2.6rem);margin:0 0 .4rem;line-height:1.1}
+.cta-band p{margin:0 auto 1.3rem;max-width:34rem}
+.cta-band .actions{justify-content:center}
+.cta-band .btn:not(.btn-wa){background:var(--white);color:var(--brick-deep);border-color:var(--white);box-shadow:0 3px 0 rgba(0,0,0,.3)}
+
+/* Footer */
+.site-footer{margin-top:3rem;background:rgba(15,22,25,.95);padding:0 clamp(1rem,4vw,3rem) 6rem}
+.site-footer::before{content:"";display:block;height:22px;margin:0 calc(-1 * clamp(1rem,4vw,3rem)) 2rem;background:var(--brick-tile) 0 0/44px 22px}
+.foot-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:2rem}
+.foot-grid h4{margin:0 0 .6rem;font:700 1.15rem var(--head);text-transform:uppercase;letter-spacing:.03em}
+.foot-grid p{margin:.5rem 0 0;color:var(--muted)}
+.foot-grid a,.foot-grid span.line{display:block;color:var(--white);text-decoration:none;padding:.2rem 0}
+.foot-grid a:hover{color:var(--amber)}
+.copy{max-width:1000px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.15);color:var(--muted);font-size:.9rem}
