@@ -62,7 +62,7 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
 .panel-nav a.on{background:var(--brick);border-color:var(--brick)}
 
 /* Floating WhatsApp: large, rippling, with a label */
-.wa-float{position:fixed;right:1rem;bottom:1.1rem;z-index:20;display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.wa-float{display:flex;align-items:center;gap:.7rem;text-decoration:none}
 .wa-icon{position:relative;width:84px;height:84px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.55),inset 0 -4px 0 rgba(0,0,0,.12);animation:wa-bob 3s ease-in-out infinite;transition:transform .15s}
 .wa-icon::before,.wa-icon::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #25d366;animation:wa-ripple 2.2s ease-out infinite}
 .wa-icon::after{animation-delay:1.1s}
@@ -176,3 +176,50 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
 #lightbox p{margin:.6rem 1rem 1rem}
 .lb-close{display:block;margin:.6rem .6rem .6rem auto;background:var(--brick);color:var(--white);border:0;padding:.45rem 1rem;border-radius:4px;font:600 1rem var(--head);text-transform:uppercase}
 @media (max-width:760px),(orientation:portrait){.gallery{grid-template-columns:1fr 1fr;gap:.7rem}.gallery figcaption{font-size:.85rem;padding:.5rem}}
+
+/* Social logos: brand backgrounds */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.bg-fb{background:#1877f2;--c:#1877f2}
+.bg-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%);--c:#d6249f}
+.bg-yt{background:#fff;--c:#ff0000}
+.bg-tt{background:#000;--c:#25f4ee}
+.ico{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none;overflow:hidden}
+.ico svg{width:60%;height:60%}
+.ico.bg-fb svg,.fab.bg-fb svg{width:100%;height:100%}
+.bg-yt svg{width:78%!important;height:78%!important}
+
+/* Floating stack: Facebook, Instagram and WhatsApp share one column so they never overlap */
+.float-stack{position:fixed;right:1rem;bottom:1.1rem;z-index:20;display:flex;flex-direction:column;align-items:flex-end;gap:.8rem}
+.fab{position:relative;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;flex:none;margin-right:13px;box-shadow:0 5px 14px rgba(0,0,0,.55);animation:wa-bob 3s ease-in-out infinite;transition:transform .15s}
+.fab svg{width:60%;height:60%;position:relative}
+.fab::before,.fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid var(--c);animation:wa-ripple 2.2s ease-out infinite}
+.fab::after{animation-delay:1.1s}
+.fab:hover,.fab:focus-visible{transform:scale(1.12)}
+.float-stack .fab:nth-child(1){animation-delay:.5s}
+.float-stack .fab:nth-child(2){animation-delay:1s}
+.wa-float{align-self:flex-end}
+
+/* YouTube and TikTok pop up after 30 seconds, bottom left */
+.float-pop{position:fixed;left:1rem;bottom:1.1rem;z-index:20;display:none;flex-direction:column;gap:.8rem}
+.float-pop.show{display:flex}
+.float-pop .fab{margin:0;width:62px;height:62px;animation:pop-in .8s cubic-bezier(.34,1.56,.64,1) both,wa-bob 3s ease-in-out .9s infinite}
+.float-pop .fab:nth-child(2){animation-delay:.2s,1.1s}
+@keyframes pop-in{0%{opacity:0;transform:scale(0) translateY(60px)}100%{opacity:1;transform:none}}
+
+/* Social links on the contact page and footer */
+.follow-h{margin:2rem 0 .6rem}
+.social-row{display:flex;flex-wrap:wrap;gap:.8rem}
+.social-row a{display:flex;align-items:center;gap:.7rem;padding:.45rem 1.1rem .45rem .45rem;border:2px solid #2d3b42;border-radius:999px;color:var(--white);text-decoration:none;font-weight:600;transition:border-color .15s,transform .15s}
+.social-row a:hover{border-color:var(--amber);transform:translateY(-2px)}
+.social-mini{display:flex;gap:.6rem;margin-top:.7rem}
+.foot-grid .social-mini a{display:grid;padding:0;width:40px;height:40px}
+.foot-grid .social-mini a:hover{transform:scale(1.1)}
+
+/* Scroll effects */
+.js .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+.scroll-cue{align-self:center;display:inline-flex;flex-direction:column;align-items:center;margin-top:1.4rem;color:var(--amber);text-decoration:none;font:600 .95rem var(--head);text-transform:uppercase;letter-spacing:.12em;animation:cue 1.8s ease-in-out infinite}
+.scroll-cue svg{width:28px;height:28px}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(8px);opacity:1}}
+@media (max-width:760px),(orientation:portrait){.fab{width:52px;height:52px;margin-right:12px}.float-pop .fab{width:56px;height:56px}}
+@media (prefers-reduced-motion:reduce){.fab,.fab::before,.fab::after,.float-pop .fab,.scroll-cue{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
