@@ -223,3 +223,23 @@ h1,h2,h3,.brand,.big,.btn,.zone-list b{font-family:var(--head);text-transform:up
 @keyframes cue{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(8px);opacity:1}}
 @media (max-width:760px),(orientation:portrait){.fab{width:52px;height:52px;margin-right:12px}.float-pop .fab{width:56px;height:56px}}
 @media (prefers-reduced-motion:reduce){.fab,.fab::before,.fab::after,.float-pop .fab,.scroll-cue{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
+
+/* Pages fill the screen: footer sits at the bottom and the logo fills any leftover space */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100svh}
+body>main{flex:0 0 auto}
+.brand-fill{flex:1 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:2.5rem 1rem 1.5rem;text-align:center}
+.brand-fill img{width:min(92%,680px);height:auto;mix-blend-mode:lighten}
+.brand-fill p{margin:0;color:var(--amber);font:600 1.05rem var(--head);text-transform:uppercase;letter-spacing:.08em}
+.site-footer{padding-bottom:8rem}
+
+/* Larger floating logos */
+.wa-icon{width:92px;height:92px}
+.wa-icon svg{width:56px;height:56px}
+.fab{width:76px;height:76px;margin-right:8px}
+.float-pop .fab{width:76px;height:76px}
+@media (max-width:760px),(orientation:portrait){
+  .wa-icon{width:84px;height:84px}
+  .wa-icon svg{width:52px;height:52px}
+  .fab{width:68px;height:68px;margin-right:8px}
+  .float-pop .fab{width:68px;height:68px}
+}
